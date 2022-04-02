@@ -5,4 +5,4 @@ function App() {
   );
 }
 
-export default App;gid
+export default App;
