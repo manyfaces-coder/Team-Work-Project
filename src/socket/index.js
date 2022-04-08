@@ -1,4 +1,5 @@
-const client = require('socket.io-client');
+import {io} from 'socket.io-client'
+
 const options = {
     "force new connection": true,
     reconnectionAttempts: "Infinity",
@@ -6,7 +7,6 @@ const options = {
     transports: ["websocket"]
 }
 
-const socket = client.io('http://localhost:3006', options)
-
+const socket = io('http://localhost:3001', options)
 
 export default socket
