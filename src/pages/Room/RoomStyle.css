@@ -1,0 +1,9 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(17, 101, 197);
+    /* white-space: nowrap; */
+}
