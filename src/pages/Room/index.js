@@ -13,10 +13,10 @@ export default function Room() {
         <header>
             <div>
                 <h1>ROOM</h1>
-                <div>
-                    <span className='text'>{roomID}</span>
-                </div>
-            Room
+                {/*<div>*/}
+                {/*    <span className='text'>{roomID}</span>*/}
+                {/*</div>*/}
+                Room
             </div>
         </header>
         
