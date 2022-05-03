@@ -18,9 +18,9 @@ export default function Main() {
     return (
         <div>
             <h1>Welcome to the videochat</h1>
-            <div class="fixed-overlay__modal">
-                <div class="modal_container">
-                    <h2 class="text">Available Rooms</h2>
+            <div className="fixed-overlay__modal">
+                <div className="modal_container">
+                    <h2 className="text">Available Rooms</h2>
 
                     <ul>
                         {rooms.map(roomID => (
@@ -33,10 +33,10 @@ export default function Main() {
                         ))}
                     </ul>
 
-                    <button class="create_room" onClick={() => {
+                    <button className="create_room" onClick={() => {
                         history(`/room/${v4()}`);
                     }}>
-                        <div class="plus"></div>
+                        <div className="plus"/>
                     Create New Room</button>
                 </div>
             </div>
