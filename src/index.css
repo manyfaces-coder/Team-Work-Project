@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Titillium+Web:wght@600&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -6,4 +8,13 @@
 
 body {
   background-color: rgb(2, 3, 26);
- }
+}
+
+.text{
+  color: rgb(255, 255, 255);
+  font-family: 'DotGothic16', sans-serif;
+  font-family: 'Press Start 2P', cursive;
+  font-family: 'Titillium Web', sans-serif;
+  letter-spacing:2px;
+  text-decoration:none;
+}

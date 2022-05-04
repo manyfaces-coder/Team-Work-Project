@@ -1,0 +1,31 @@
+/* .myBtn {
+    padding: 5px 15px;
+    color: teal;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid teal;
+    cursor: pointer;
+} */
+
+
+.myBtn {
+  min-width: 100px;
+  font-family: inherit;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676d7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.myBtn:hover {
+  background: #1d49aa;
+}
+
+.myBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}

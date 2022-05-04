@@ -1,0 +1,52 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  
+}
+.text_404{
+  font-size: 50px;
+}
+
+.text_error{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.error_window{
+  position: relative;
+  top: 35%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 20px;
+  min-width: 200px;
+  text-align: center;
+  white-space: normal;
+  background-color: rgb(173, 173, 173);    
+}
+
+.error_button {
+  margin-top: 100px;
+  min-width: 100px;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676d7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+  
+.error_button:hover {
+  background: #1d49aa;
+}
+  
+  .error_button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #cbd6ee;
+  }

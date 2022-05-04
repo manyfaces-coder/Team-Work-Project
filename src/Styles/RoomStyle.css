@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(17, 101, 197);
+    /* white-space: nowrap; */
+}
+
+.text{
+    color: rgb(255, 255, 255);
+    font-family: 'DotGothic16', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.main {
+    height: 95vh;
+    display: flex;
+}
+
+.main__left {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+}
+
+/* #video-grid{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+video{
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+    padding: 8px;
+} */
+
+.main__right {
+    flex: 0.2;
+    background-color: #242324;
+    border-left: 1px solid #3D3D42;
+}
+
+.main__videos {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+
+.main__control_panel{
+    display: flex;
+    background-color: #191919;
+    justify-content: space-between;
+    padding: 0 15px;
+
+}
+
+.main__control_panel__block{
+    display: flex;
+}
+
+.main__control_panel__button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    min-width: 80px;
+    cursor: pointer;
+}
+
+.main__control_panel__button img {
+    max-height: 30px;
+    max-width: 30px;
+    width: 30px;
+    height: 30px;
+    /* display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto; */
+}
+
+.main__control_panel__button:hover{
+    background-color: rgb(2, 3, 26);
+}
+
+.leave_meeting {
+    color: tomato;
+}

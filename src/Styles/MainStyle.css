@@ -1,0 +1,44 @@
+
+
+* {
+    box-sizing: border-box;
+}
+h1 {
+    text-align: center;
+}
+
+.logo_img {
+    max-height: 250px;
+    max-width: 250px;
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main_container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+h1.text{
+    color: rgb(17, 101, 197);  
+    letter-spacing:10px;
+}
+
+.modal_container {
+    border-radius: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 50px;
+    padding: 20px;
+    min-width: 200px;
+    text-align: center;
+    white-space: normal;
+    background-color: rgb(173, 173, 173);    
+}
