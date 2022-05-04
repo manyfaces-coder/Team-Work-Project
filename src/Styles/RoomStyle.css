@@ -26,7 +26,7 @@ h1 {
     flex-direction: column;
 }
 
-/* #video-grid{
+#video-grid{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -37,7 +37,7 @@ video{
     width: 400px;
     object-fit: cover;
     padding: 8px;
-} */
+}
 
 .main__right {
     flex: 0.2;
