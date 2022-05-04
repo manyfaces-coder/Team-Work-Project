@@ -19,7 +19,7 @@ export default function Main() {
 
     return (
         <div>
-            <h1 class="text">WELCOM TO VIDEO CHAT</h1>
+            <h1 class="text">WELCOME TO VIDEO CHAT</h1>
             <div class="main_container">
             <img class='logo_img' alt='Logo' src={logo}/>
                 <div class="modal_container">
