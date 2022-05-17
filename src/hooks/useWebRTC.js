@@ -70,6 +70,50 @@ export default function UseWebRTC(roomID) {
     }, []);
 
     useEffect(() => {
+        async function setRemoteMedia({peerID, sessionDescription : remoteDescription}) {
+            await peerConnections.current[peerID].setRemoteDescription(
+                new RTCSessionDescription(remoteDescription)
+            );
+
+            if (remoteDescription.type === 'offer') {
+                const answer = await peerConnections.current[peerID].createAnswer();
+
+                await peerConnections.current[peerID].setLocalDescription(answer);
+
+                socket.emit(ACTIONS.RELAY_SDP, {
+                    peerID,
+                    sessionDescription: answer,
+                });
+            }
+        }
+
+        socket.on(ACTIONS.SESSION_DESCRIPTION, setRemoteMedia)
+    }, []);
+
+    useEffect(() => {
+        socket.on(ACTIONS.ICE_CANDIDATE, ({peerID, iceCandidate}) => {
+            peerConnections.current[peerID].addIceCandidate(
+                new RTCIceCandidate(iceCandidate)
+            );
+        });
+    }, []);
+
+    useEffect(() => {
+        const handleRemovePeer = ({peerID}) => {
+            if (peerConnections.current[peerID]) {
+                peerConnections.current[peerID].close();
+            }
+
+            delete peerConnections.current[peerID];
+            delete peerMediaElements.current[peerID];
+
+            updateClients(list => list.filter(c => c !== peerID));
+        };
+
+        socket.on(ACTIONS.REMOVE_PEER, handleRemovePeer);
+    }, []);
+
+    useEffect(() => {
         async function startCapture() {
             localMediaStream.current = await navigator.mediaDevices.getUserMedia({
                 audio: true,
