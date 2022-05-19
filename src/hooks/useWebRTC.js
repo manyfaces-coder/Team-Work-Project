@@ -41,7 +41,7 @@ export default function UseWebRTC(roomID) {
 
             let tracksNumber = 0;
 
-            peerConnections.current[peerID].ontrack = ({steams: [remoteStream]}) => {
+            peerConnections.current[peerID].ontrack = ({streams: [remoteStream]}) => {
                 tracksNumber++
                 if (tracksNumber === 2 ) {//video  & audio tracks received
                     addNewClient(peerID, () => {
