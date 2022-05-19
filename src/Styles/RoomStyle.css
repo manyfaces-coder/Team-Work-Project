@@ -33,9 +33,9 @@ h1 {
 }
 
 video{
-    height: 300px;
+    /* height: 300px;
     width: 400px;
-    object-fit: cover;
+    object-fit: cover; */
     padding: 8px;
 }
 
@@ -43,6 +43,10 @@ video{
     flex: 0.2;
     background-color: #242324;
     border-left: 1px solid #3D3D42;
+    flex-direction: column;
+    display: flex;
+    padding-top: 1vh;
+
 }
 
 .main__videos {
@@ -50,7 +54,10 @@ video{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    /* padding: 40px; */
+    flex-wrap: wrap;
+    height: 100vh;
+
 }
 
 
@@ -93,4 +100,24 @@ video{
 
 .leave_meeting {
     color: tomato;
+}
+
+.main__header {
+    text-align: center;
+}
+
+.main__chat_window{
+    flex-grow: 1;
+}
+
+.main__message_container {
+    padding: 22px 12px;
+    display: flex;
+}
+
+.main__message_container input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: #f5f5f5;
 }
