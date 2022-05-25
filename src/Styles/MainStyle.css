@@ -19,12 +19,27 @@ h1 {
 }
 
 .main_container {
+    
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
-
+.wrapper {
+    text-align: center;
+    display: block;
+    height: 200px;
+  }
+  .wrapper:before {
+    content: "";
+    display: inline-block;
+    height: 20%;
+    vertical-align: middle;
+  }
+  .inner {
+    display: inline-block;
+    vertical-align: middle;
+  }
 
 h1.text{
     color: rgb(17, 101, 197);  
@@ -42,3 +57,63 @@ h1.text{
     white-space: normal;
     background-color: rgb(173, 173, 173);    
 }
+
+#create_room {
+    margin-top: 5vh;
+}
+
+.rectangle {
+    counter-reset: li; 
+    list-style: none; 
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    }
+    .rectangle a {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    margin: .5em 0 .5em 2.5em;
+    background: #D3D4DA;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+    border-radius: 5px;
+    float:left;
+    }
+
+    .rectangle a:hover {background: #DCDDE1;}   
+
+    .rectangle a:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #9097A2;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    }
+    .rectangle a:after {
+    position: absolute;
+    content: "";
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+    }
+    .rectangle a:hover:after {
+    left: -.5em;
+    border-left-color: #9097A2;
+    }
+
+    a + button {
+        position: relative;
+    display: block;
+    margin: 1em 0 .5em 28em;
+    }

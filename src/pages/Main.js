@@ -27,22 +27,23 @@ export default function Main() {
     return (
         <div ref={rootNode}>
             <h1 className="text">WELCOME TO VIDEO CHAT</h1>
-            <div className="main_container">
+            <div className="main_container wrapper">
             <img className='logo_img' alt='Logo' src={logo}/>
                 <div className="modal_container">
                     <h2 className="text">Available Rooms</h2>
-                    <ul>
+                    <ul className='rectangle text'>
                         {rooms.map(roomID => (
                             <li key={roomID}>
-                                {roomID}
-                                <button onClick={() => {
+                                <a>{roomID}</a>
+                                
+                                <MyButton onClick={() => {
                                     history(`/room/${roomID}`);
-                                }}>JOIN ROOM</button>
+                                }}>JOIN ROOM</MyButton>
                             </li>
                         ))}
                     </ul>
 
-                    <MyButton className='create_room' onClick={() => {
+                    <MyButton id='create_room' onClick={() => {
                         history(`/room/${v4()}`);
                     }}>
                         <span className="text">Create New Room</span>
