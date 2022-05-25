@@ -63,6 +63,8 @@ io.on('connection', socket => {
         const {rooms} = socket;
 
         Array.from(rooms)
+            //Выход только из созданных комнат
+            .filter(roomID => validate(roomID) && version(roomID) === 4)
             .forEach(roomID => {
                 const clients = Array.from(io.sockets.adapter.rooms.get(roomID) || []);
 

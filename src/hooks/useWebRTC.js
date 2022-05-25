@@ -10,9 +10,13 @@ export default function UseWebRTC(roomID) {
     const [clients, updateClients] = useStateWithCallback([]);
 
     const addNewClient = useCallback((newClient, cb) => {//добавляем только нового клиента, не даем одному и тому же подключиться дважды
-        if(!clients.includes(newClient)) {
-            updateClients(list => [...list, newClient], cb);
-        }
+        updateClients(list => {
+            if (!list.includes(newClient)) {
+              return [...list, newClient]
+            }
+      
+            return list;
+          }, cb);
     }, [clients, updateClients]);
 
     const peerConnections = useRef({}); //хранит все peer соединение, которые связывают пользователя с другими пользователями
@@ -45,13 +49,29 @@ export default function UseWebRTC(roomID) {
             peerConnections.current[peerID].ontrack = ({streams: [remoteStream]}) => {
                 tracksNumber++ 
                 if (tracksNumber === 2 ) {//если получили видео и аудио = 2, тогда соединяемся с клиентом
+                    
                     addNewClient(peerID, () => {
                         //начинаем транслировать в видеоэлементе, который создался для этого peerID, который нарисовался на странице
                         //этот remoteStream
-                        peerMediaElements.current[peerID].srcObject = remoteStream;
-                    });
-                } 
-            }
+                        if (peerMediaElements.current[peerID]) {
+                            peerMediaElements.current[peerID].srcObject = remoteStream;
+                          } else {
+                            // FIX LONG RENDER IN CASE OF MANY CLIENTS
+                            let settled = false;
+                            const interval = setInterval(() => {
+                              if (peerMediaElements.current[peerID]) {
+                                peerMediaElements.current[peerID].srcObject = remoteStream;
+                                settled = true;
+                              }
+              
+                              if (settled) {
+                                clearInterval(interval);
+                              }
+                            }, 1000);
+                          }
+                        });
+                      }
+                    }
             //из локального стрима получаем треки которые сейчас транслируются и добавляем их к нашему peerConnections
             localMediaStream.current.getTracks().forEach(track => {
                 peerConnections.current[peerID].addTrack(track, localMediaStream.current);
@@ -69,12 +89,17 @@ export default function UseWebRTC(roomID) {
             }
         }
 
-        socket.on(ACTIONS.ADD_PEER, handlerNewPeer)
+        socket.on(ACTIONS.ADD_PEER, handlerNewPeer);
+
+    return () => {
+      socket.off(ACTIONS.ADD_PEER);
+    }
     }, []);
 
     useEffect(() => {//реакция на появление новой сессии на клиенте
         async function setRemoteMedia({peerID, sessionDescription : remoteDescription}) {
-            await peerConnections.current[peerID].setRemoteDescription(
+            // await peerConnections.current[peerID].setRemoteDescription(
+            await peerConnections.current[peerID]?.setRemoteDescription(
                 new RTCSessionDescription(remoteDescription)//обернут в конструктор, т.к. не во всех браузерах работает напрямую
             );
 
@@ -91,14 +116,22 @@ export default function UseWebRTC(roomID) {
         }
 
         socket.on(ACTIONS.SESSION_DESCRIPTION, setRemoteMedia)
+        return () => {
+            socket.off(ACTIONS.SESSION_DESCRIPTION);
+          }
     }, []);
 
     useEffect(() => {//реакция на появление нового ice кандидата на клиенте
         socket.on(ACTIONS.ICE_CANDIDATE, ({peerID, iceCandidate}) => {
-            peerConnections.current[peerID].addIceCandidate(
+            // peerConnections.current[peerID].addIceCandidate(
+            peerConnections.current[peerID]?.addIceCandidate(
                 new RTCIceCandidate(iceCandidate)
             );
         });
+
+        return () => {
+        socket.off(ACTIONS.ICE_CANDIDATE);
+      }
     }, []);
 
     useEffect(() => {//реакция на выход из комнаты
@@ -114,6 +147,10 @@ export default function UseWebRTC(roomID) {
         };
 
         socket.on(ACTIONS.REMOVE_PEER, handleRemovePeer);
+
+        return () => {
+            socket.off(ACTIONS.REMOVE_PEER);
+          }
     }, []);
 
     useEffect(() => {
