@@ -1,10 +1,10 @@
 import {useEffect, useRef, useCallback, useState} from "react";
 
-const useStateWithCallback = initialState => {
+const useStateWithCallback = initialState => { //Принимает начальное состояние 
     const [state,setState] = useState(initialState);
     const cbRef = useRef();
 
-    const updateState = useCallback((newState, cb) => {
+    const updateState = useCallback((newState, cb) => {//
         cbRef.current = cb;
 
         setState(prev => typeof newState === 'function' ? newState(prev) : newState);

@@ -7,14 +7,18 @@ import '../Styles/MainStyle.css';
 import logo from '../images/conference.png'
 import MyButton from '../components/UI/button/MyButton.jsx'
 
+
+//Логика подключения/отключения к коммнатам на клиенте
 export default function Main() {
     const history = useNavigate();
     const [rooms, updateRooms] = useState([]);
     const rootNode = useRef();
 
+    //При входе на страницу получаем все комнаты
     useEffect(() => {
         socket.on(ACTIONS.SHARE_ROOMS, ({ rooms = [] } = {}) => {
             if (rootNode.current) {
+                //Обновляем спсок каждый раз когда они приходят
                 updateRooms(rooms);
             }
         });
