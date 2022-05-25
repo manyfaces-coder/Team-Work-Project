@@ -25,13 +25,13 @@ export default function Main() {
     });
 
     return (
-        <div ref={rootNode}>
-            <h1 className="text">WELCOME TO VIDEO CHAT</h1>
+        <div className="text"ref={rootNode}>
+            <h1 >WELCOME TO VIDEO CHAT</h1>
             <div className="main_container wrapper">
             <img className='logo_img' alt='Logo' src={logo}/>
                 <div className="modal_container">
-                    <h2 className="text">Available Rooms</h2>
-                    <ul className='rectangle text'>
+                    <h2 >Available Rooms</h2>
+                    <ul className='rectangle'>
                         {rooms.map(roomID => (
                             <li key={roomID}>
                                 <a>{roomID}</a>
@@ -46,7 +46,7 @@ export default function Main() {
                     <MyButton id='create_room' onClick={() => {
                         history(`/room/${v4()}`);
                     }}>
-                        <span className="text">Create New Room</span>
+                        <span>Create New Room</span>
                     </MyButton>
                     
                 </div>
