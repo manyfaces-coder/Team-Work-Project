@@ -71,28 +71,27 @@ export default function Room() {
                     </div>
                     <div className='main__control_panel text'>
                         <div className='main__control_panel__block'>
-                            <div onClick={muteUnmute} className='main__control_panel__button'>
-                                <img src={Micro} alt='Microphone'/>
-                                <span>Mute</span>
+                            <div onClick={muteUnmute} className='main__control_panel__button main__mute_button'>
+                                <i class="fas fa-microphone"></i>
+                                    <span>Mute</span>
                             </div>
                             <div className='main__control_panel__button'>
-                            <img src={Video} alt='Video'/>
-                                <span>Stop Video</span>
+                                <i class="fas fa-video"></i>
+                                    <span>Stop Video</span>
                             </div>
                         </div>
                         <div className='main__control_panel__block'>
                             <div className='main__control_panel__button'>
-                                <img src={Participants} alt='Participants'/>
+                                <i class="fas fa-user-friends"></i>
                                 <span>Participants</span>
                             </div>
                             <div className='main__control_panel__button'>
-                            <img src={Chat} alt='Chat'/>
+                            <i class="fas fa-comment-alt"></i>
                                 <span>Chat</span>
                             </div>
                         </div>
                         <div className='main__control_panel__block'>
                             <div className='main__control_panel__button'>
-                                {/* <img src={} alt='Microphone'/> */}
                                 <span className='leave_meeting'>Leave Meeting</span>
                             </div>
                         </div>
