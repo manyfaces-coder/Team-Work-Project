@@ -5,6 +5,7 @@ import ACTIONS from "../socket/actions";
 import socket from "../socket";
 
 export const LOCAL_VIDEO = 'LOCAL_VIDEO';
+export let myVideoStream;
 
 export default function UseWebRTC(roomID) {
     const [clients, updateClients] = useStateWithCallback([]);
@@ -161,7 +162,7 @@ export default function UseWebRTC(roomID) {
                     width: 1280, 
                     height: 720,
                 }
-            });
+            }).then(stream => myVideoStream = stream);;
             //если захват контента произошел успешно 
             addNewClient(LOCAL_VIDEO, () => {
                 const localVideoElement = peerMediaElements.current[LOCAL_VIDEO];
