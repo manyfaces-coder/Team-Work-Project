@@ -1,11 +1,5 @@
 import { useParams } from "react-router";
 import '../Styles/RoomStyle.css';
-import MyButton from '../components/UI/button/MyButton.jsx'
-import Micro from '../images/microphone.png'
-import MuteMicro from '../images/mute-microphone.png'
-import Video from '../images/video-camera.png'
-import Participants from '../images/participants.png'
-import Chat from '../images/chat.png'
 import useWebRTC, {LOCAL_VIDEO} from '../hooks/useWebRTC';
 import {muteUnmute, playStop} from "../buttons";
 
