@@ -7,7 +7,7 @@ import Video from '../images/video-camera.png'
 import Participants from '../images/participants.png'
 import Chat from '../images/chat.png'
 import useWebRTC, {LOCAL_VIDEO} from '../hooks/useWebRTC';
-import {muteUnmute} from "../buttons";
+import {muteUnmute, playStop} from "../buttons";
 
 function layout(clientsNumber = 1) {
     const pairs = Array.from({length: clientsNumber})
@@ -75,7 +75,7 @@ export default function Room() {
                                 <i class="fas fa-microphone"></i>
                                     <span>Mute</span>
                             </div>
-                            <div className='main__control_panel__button'>
+                            <div onClick={playStop} className='main__control_panel__button main__video_button'>
                                 <i class="fas fa-video"></i>
                                     <span>Stop Video</span>
                             </div>
