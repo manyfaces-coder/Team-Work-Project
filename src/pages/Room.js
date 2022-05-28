@@ -38,8 +38,6 @@ export default function Room() {
     const {clients, provideMediaRef} = useWebRTC(roomID);
     const videoLayout = layout(clients.length);
 
-    console.log(clients);
-    console.log(roomID);
 
     return (
             <div className='main'>
@@ -47,7 +45,7 @@ export default function Room() {
                     <div className='main__videos'>
                         {clients.map((clientID, index) => {
                             return (
-                                <div key={clientID} style={videoLayout[index]} id='video_grid'>
+                                <div key={clientID} style={videoLayout[index]} id={clientID}>
                                     <video
                                         width='100%'
                                         height='100%'
@@ -66,27 +64,27 @@ export default function Room() {
                     <div className='main__control_panel text'>
                         <div className='main__control_panel__block'>
                             <div onClick={muteUnmute} className='main__control_panel__button main__mute_button'>
-                                <i class="fas fa-microphone"></i>
+                                <i className="fas fa-microphone"></i>
                                     <span>Mute</span>
                             </div>
                             <div onClick={playStop} className='main__control_panel__button main__video_button'>
-                                <i class="fas fa-video"></i>
+                                <i className="fas fa-video"></i>
                                     <span>Stop Video</span>
                             </div>
                         </div>
                         <div className='main__control_panel__block'>
                             <div className='main__control_panel__button'>
-                                <i class="fas fa-user-friends"></i>
+                                <i className="fas fa-user-friends"></i>
                                 <span>Participants</span>
                             </div>
                             <div className='main__control_panel__button'>
-                            <i class="fas fa-comment-alt"></i>
+                            <i className="fas fa-comment-alt"></i>
                                 <span>Chat</span>
                             </div>
                         </div>
                         <div className='main__control_panel__block'>
                             <div className='main__control_panel__button'>
-                                <span className='leave_meeting'>Leave Meeting</span>
+                                <a href='\' className='leave_meeting'>Leave Meeting</a>
                             </div>
                         </div>
                     </div>
