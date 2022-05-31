@@ -54,3 +54,8 @@ const setMuteButton = () => {
     `
     document.querySelector('.main__video_button').innerHTML = html;
   }
+
+  export const setVisibleChat = () => {
+    const el = document.getElementsByClassName('main__right')[0];
+    el.classList.toggle('is-active');
+  }

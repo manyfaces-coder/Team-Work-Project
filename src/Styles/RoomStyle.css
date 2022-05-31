@@ -23,6 +23,7 @@ h1 {
 .main__left {
     flex: 0.8;
     display: flex;
+    flex-grow: 1    ;
     flex-direction: column;
 }
 
@@ -44,9 +45,12 @@ video{
     background-color: #242324;
     border-left: 1px solid #3D3D42;
     flex-direction: column;
-    display: flex;
+    display: none;
     padding-top: 1vh;
+}
 
+.main__right.is-active {
+    display: flex;
 }
 
 .main__videos {
@@ -54,9 +58,9 @@ video{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 40px; */
+     padding: 40px;
     flex-wrap: wrap;
-    height: 100vh;
+    height: 88.4vh;
 
 }
 

@@ -1,7 +1,8 @@
 import { useParams } from "react-router";
 import '../Styles/RoomStyle.css';
 import useWebRTC, {LOCAL_VIDEO} from '../hooks/useWebRTC';
-import {muteUnmute, playStop} from "../buttons";
+import {muteUnmute, playStop, setVisibleChat} from "../buttons";
+import {Link} from "react-router-dom";
 
 function layout(clientsNumber = 1) {
     const pairs = Array.from({length: clientsNumber})
@@ -59,7 +60,6 @@ export default function Room() {
                                 </div>
                             )
                         })}
-                        
                     </div>
                     <div className='main__control_panel text'>
                         <div className='main__control_panel__block'>
@@ -73,18 +73,18 @@ export default function Room() {
                             </div>
                         </div>
                         <div className='main__control_panel__block'>
-                            <div className='main__control_panel__button'>
+                            <div  className='main__control_panel__button'>
                                 <i className="fas fa-user-friends"></i>
                                 <span>Participants</span>
                             </div>
-                            <div className='main__control_panel__button'>
+                            <div onClick={setVisibleChat}  className='main__control_panel__button'>
                             <i className="fas fa-comment-alt"></i>
                                 <span>Chat</span>
                             </div>
                         </div>
                         <div className='main__control_panel__block'>
                             <div className='main__control_panel__button'>
-                                <a href='\' className='leave_meeting'>Leave Meeting</a>
+                                <Link className='leave_meeting' to='/'>Leave Meeting</Link>
                             </div>
                         </div>
                     </div>

@@ -181,7 +181,6 @@ export default function UseWebRTC(roomID) {
 
         return () => {//когда меняется ID комнаты останавливаем захват медиаконтента пользователя
             localMediaStream.current.getTracks().forEach(track => track.stop());
-
             socket.emit(ACTIONS.LEAVE);
         };
     },[roomID]);
