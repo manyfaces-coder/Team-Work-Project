@@ -1,7 +1,7 @@
-import { useParams } from "react-router";
+import {useParams} from "react-router";
 import '../Styles/RoomStyle.css';
 import useWebRTC, {LOCAL_VIDEO} from '../hooks/useWebRTC';
-import {muteUnmute, playStop, setVisibleChat} from "../buttons";
+import {muteUnmute, playStop, setVisibleChat, setVisibleParticipants} from "../buttons";
 import {Link} from "react-router-dom";
 
 function layout(clientsNumber = 1) {
@@ -38,8 +38,6 @@ export default function Room() {
     const { id: roomID } = useParams();
     const {clients, provideMediaRef} = useWebRTC(roomID);
     const videoLayout = layout(clients.length);
-
-
     return (
             <div className='main'>
                 <div className='main__left'>
@@ -72,8 +70,9 @@ export default function Room() {
                                     <span>Stop Video</span>
                             </div>
                         </div>
-                        <div className='main__control_panel__block'>
-                            <div  className='main__control_panel__button'>
+
+                        <div  className='main__control_panel__block'>
+                            <div onClick={setVisibleParticipants} className='main__control_panel__button'>
                                 <i className="fas fa-user-friends"></i>
                                 <span>Participants</span>
                             </div>
@@ -82,6 +81,7 @@ export default function Room() {
                                 <span>Chat</span>
                             </div>
                         </div>
+
                         <div className='main__control_panel__block'>
                             <div className='main__control_panel__button'>
                                 <Link className='leave_meeting' to='/'>Leave Meeting</Link>
@@ -89,26 +89,38 @@ export default function Room() {
                         </div>
                     </div>
                 </div>
-                <div className='main__right'>
+
+                <div className='main__right chat'>
                     <div className='main__header'>
                         <h6 className='text'>Chat</h6>
                     </div>
                     < div className='main__chat_window'>
-                        <ul className='messages'>
-
+                        <ul className='input'>
                         </ul>
                     </div>
                     <div className='main__message_container'>
                         <input id='chat_message' type='text' placeholder='Type your message here...'>
-                            
                         </input>
                     </div>
+                </div>
 
+                <div className='main__right participants'>
+                    <div className='main__header'>
+                        <h6 className='text'>Participants</h6>
+                    </div>
+                    <div className='main__participants_window'>
+                        <ul className='input'>
+                            <div className="">
+                                {clients.map((clientID) => {
+                                    return (
+                                        clientID === 'LOCAL_VIDEO' ? <p className="text">Я</p> : <p className="text">{clientID}</p>
+                                    )
+                                })}
+                            </div>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            
-
-            // </div>
 
     );
 }

@@ -54,8 +54,15 @@ io.on('connection', socket => {
 
         //Теперь подключаемся к комнате
         socket.join(roomID);
+
+        socket.on('message', (message) => {
+            //send message to the same room
+            io.to(roomID).emit('createMessage', message)
+        });
+
         //Делимся информацией о комнате
         shareRoomsInfo();
+
     });
     
     //Выход из комнаты
@@ -84,6 +91,8 @@ io.on('connection', socket => {
             });
         //Делимся инофрмацией о комнате
         shareRoomsInfo();
+
+
     }
 
 

@@ -112,8 +112,14 @@ h1.text{
     border-left-color: #9097A2;
     }
 
-    a + button {
-        position: relative;
+.rectangle > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a + button {
     display: block;
-    margin: 1em 0 .5em 28em;
-    }
+    margin-left: 1vh;
+    position: relative;
+}

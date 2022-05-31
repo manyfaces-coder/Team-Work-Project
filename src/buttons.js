@@ -55,7 +55,28 @@ const setMuteButton = () => {
     document.querySelector('.main__video_button').innerHTML = html;
   }
 
+
   export const setVisibleChat = () => {
-    const el = document.getElementsByClassName('main__right')[0];
-    el.classList.toggle('is-active');
+    const participantsEl = document.getElementsByClassName('main__right participants')[0];
+    const chatEl = document.getElementsByClassName('main__right chat')[0];
+    if(participantsEl.classList.contains('is-active'))
+        participantsEl.classList.remove('is-active')
+
+    chatEl.classList.toggle('is-active')
+
   }
+
+  export const setVisibleParticipants = () => {
+      const participantsEl = document.getElementsByClassName('main__right participants')[0];
+      const chatEl = document.getElementsByClassName('main__right chat')[0];
+      if(chatEl.classList.contains('is-active'))
+          chatEl.classList.remove('is-active')
+
+      participantsEl.classList.toggle('is-active');
+  }
+
+export const scrollToBottom = () => {
+    let d = document.getElementsByClassName('main__chat_window');
+    d.scrollTop = d.scrollHeight;
+}
+

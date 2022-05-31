@@ -3,6 +3,7 @@ import freeice from 'freeice';
 import useStateWithCallback from "./useStateWithCallback";
 import ACTIONS from "../socket/actions";
 import socket from "../socket";
+import {scrollToBottom} from "../buttons";
 
 export const LOCAL_VIDEO = 'LOCAL_VIDEO';
 export let myVideoStream;
@@ -162,11 +163,27 @@ export default function UseWebRTC(roomID) {
                     width: 1280, 
                     height: 720,
                 }
-            }).then(stream => myVideoStream = stream);;
+            }).then(stream => {
+                myVideoStream = stream;
+                let el = document.getElementsByTagName('html')[0];
+                el.addEventListener('keydown', function(e) {
+                    let text = document.getElementsByTagName('input')[0];
+                    if(e.key === 'Enter' && text.value.length > 0) {
+                        console.log('заработало')
+                        socket.emit('message', text.value);
+                        text.value = '';
+                    }
+                });
+                socket.on("createMessage", message => {
+                    document.getElementsByTagName('ul')[0].innerHTML += (`<li class="text message"><b>user</b><br/>${message}</li>`);
+                    scrollToBottom()
+                })
+                return stream;
+            });
+
             //если захват контента произошел успешно 
             addNewClient(LOCAL_VIDEO, () => {
                 const localVideoElement = peerMediaElements.current[LOCAL_VIDEO];
-
                 if (localVideoElement) {
                     localVideoElement.volume = 0;
                     localVideoElement.srcObject = localMediaStream.current;
