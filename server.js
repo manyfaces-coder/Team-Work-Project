@@ -71,7 +71,7 @@ io.on('connection', socket => {
                 //Сообщаем всем клиентам, прервать peer соединение с отключившимся
                 clients.forEach(clientID => {
                     io.to(clientID).emit(ACTIONS.REMOVE_PEER, {
-                        peerID: socket.ID,
+                        peerID: socket.id,
                     });
 
                     //Отключившийся прерывает соединение с другими
