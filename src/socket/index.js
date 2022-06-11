@@ -8,7 +8,7 @@ const options = {
     timeout: 10000,
     transports: ["websocket"] //настройка, чтобы сокеты могли работать раздоменно
 }
-// const socket = io('/', options);
-const socket = io('http://localhost:3001', options)
+const socket = io('/', options);
+// const socket = io('http://localhost:3001', options)
 
 export default socket
